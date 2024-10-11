@@ -1,20 +1,27 @@
-import mongoose from "mongoose"
 import User from "../models/users.js"
 
 export function getUsers(req,res){
-    res.json({
-        msg:"this is get request!"
-    })
+    User.find().then(
+        (usersList)=>{
+            res.json({
+                list:usersList
+            })
+        }
+    )
 }
 
 export function postUsers(req,res){
     const user = req.body;
     const newUser = new User(user);
     newUser.save().then(()=>{
-        msg:"user created successfully"
+        res.json({
+            msg:"user created successfully"
+        })
     }).catch(
         ()=>{
-            msg:"error creating user"
+            res.json({
+                msg:"user creation failed"
+            })
         }
     )
 }

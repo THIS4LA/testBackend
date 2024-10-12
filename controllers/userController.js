@@ -32,8 +32,17 @@ export function putUsers(req,res){
     })
 }
 
-export function deleteUsers(req,res){
-    res.json({
-        msg:"this is delete request!"
-    })
+export function deleteUsers(req, res) {
+    const resemail = req.body.email;
+    User.deleteOne({ email: resemail })
+        .then(() => {
+            res.json({
+                msg: "user deleted successfully"
+            });
+        })
+        .catch(() => {
+            res.json({
+                msg: "user deletion failed"
+            });
+        });
 }

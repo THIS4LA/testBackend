@@ -1,30 +1,47 @@
 import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema({
-    email:{
-        type:String,
-        required:true,
-        unique:true
-    },
-    firstName:{
-        type:String
-    },
-    lastName:{
-        type:String
-    },
-    img:{
-        type:String,
-        default:"https://cdn-icons-png.flaticon.com/512/3686/3686930.png"
-    },
-    password:{
-        type:String,
-        required:true
-    },
-    phone:{
-        type:Number
-    }
-
-})
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+    default: "customer",
+  },
+  whatsapp: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  emailVerified:{
+    type: Boolean,
+    required: true,
+    default: false
+  }
+});
 
 const User = mongoose.model("users",userSchema);
 export default User;

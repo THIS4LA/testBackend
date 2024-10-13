@@ -46,3 +46,25 @@ export function deleteUsers(req, res) {
             });
         });
 }
+
+export function loginuser(req,res){
+    const credentials = req.body;
+    User.findOne({email:credentials.email,password:credentials.password}).then(
+        (user)=>{
+            if(user==null){
+                res.status(404).json({
+                    msg:"invalid credentials"
+                })
+            }else{
+                res.json({
+                    msg:"there is an user!",
+                    user:user
+                })
+            }
+        }
+    ).catch(()=>{
+        res.status(500).json({
+            msg:"server error"
+        })
+    })
+}

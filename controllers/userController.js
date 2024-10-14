@@ -1,4 +1,5 @@
-import User from "../models/users.js"
+import User from "../models/users.js";
+import jwt from "jsonwebtoken";
 
 export function getUsers(req,res){
     User.find().then(
@@ -56,15 +57,24 @@ export function loginuser(req,res){
                     msg:"invalid credentials"
                 })
             }else{
+                const payload={
+                    id:user._id,
+                    email:user.email,
+                    firstName:user.firstName,
+                    lastName:user.lastName,
+                    type:user.type,
+                }
+                const token = jwt.sign(payload,"secret",{expiresIn:"1h"});
                 res.json({
                     msg:"there is an user!",
-                    user:user
+                    user:user,
+                    token:token
                 })
             }
         }
     ).catch(()=>{
         res.status(500).json({
-            msg:"server error"
+            msg:"server errors"
         })
     })
 }

@@ -1,5 +1,5 @@
 import express from "express";
-import { getUsers,postUsers,putUsers,deleteUsers,loginuser } from "../controllers/userController.js";
+import { getUsers,postUsers,putUsers,deleteUsers,loginUser } from "../controllers/userController.js";
 
 const userRouter = express.Router();
 
@@ -8,7 +8,7 @@ userRouter.get("/",getUsers);
 
 userRouter.post("/",postUsers);
 
-userRouter.post("/login",loginuser);
+userRouter.post("/login",loginUser);
 
 userRouter.put("/",putUsers);
 

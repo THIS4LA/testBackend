@@ -1,6 +1,9 @@
 import User from "../models/users.js";
 import jwt from "jsonwebtoken";
 import argon2 from "argon2";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export function getUsers(req, res) {
   User.find().then((usersList) => {
@@ -97,7 +100,7 @@ export async function loginUser(req, res) {
           lastName: user.lastName,
           type: user.type,
         };
-        const token = jwt.sign(payload, "secret", { expiresIn: "24h" });
+        const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: "24h" });
         return res.json({
           msg: "login success!",
           user: user,

@@ -1,6 +1,6 @@
 import galleryItem from "../models/galleryItems.js";
 
-export function postgalleryItem(req, res) {
+export function postGalleryItem(req, res) {
   const user = req.body.user;
   //when user is not logged in
   if (user == null) {
@@ -19,9 +19,9 @@ export function postgalleryItem(req, res) {
 
   console.log(req.body);
 
-  const bodygalleryItem = req.body.item;
-  const newgalleryItem = new galleryItem(bodygalleryItem);
-  newgalleryItem
+  const bodyGalleryItem = req.body.item;
+  const newGalleryItem = new galleryItem(bodyGalleryItem);
+  newGalleryItem
     .save()
     .then(() => {
       res.json({

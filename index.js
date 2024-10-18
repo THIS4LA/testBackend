@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import galleryItemRouter from "./routes/galleryItemRoute.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import categoryRouter from "./routes/categoryRoute.js";
 
 dotenv.config();
 
@@ -29,7 +30,7 @@ app.use((req, res, next) => {
   if (token != null) {
     jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
       if (decoded != null) {
-        req.body.user = decoded;
+        req.user = decoded;
         next();
       } else {
         //error when decoding
@@ -44,6 +45,7 @@ app.use((req, res, next) => {
 
 app.use("/api/users", userRouter);
 app.use("/api/gallery", galleryItemRouter);
+app.use("/api/category", categoryRouter);
 
 app.listen(5000, (req, res) => {
   const port = "5000";

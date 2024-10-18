@@ -1,7 +1,7 @@
 import galleryItem from "../models/galleryItems.js";
 
 export function postGalleryItem(req, res) {
-  const user = req.body.user;
+  const user = req.user;
   //when user is not logged in
   if (user == null) {
     res.status(401).json({
@@ -19,7 +19,7 @@ export function postGalleryItem(req, res) {
 
   console.log(req.body);
 
-  const bodyGalleryItem = req.body.item;
+  const bodyGalleryItem = req.body;
   const newGalleryItem = new galleryItem(bodyGalleryItem);
   newGalleryItem
     .save()

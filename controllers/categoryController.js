@@ -59,3 +59,18 @@ export function getCategoryByName(req, res) {
     });
 }
 
+export function deleteCategoryByName(req, res) {
+  const name = req.params.name;
+  Category.deleteOne({ name: name })
+    .then((result) => {
+      res.json({
+        result:result
+      });
+    })
+    .catch((err) => {
+      res.json({
+        msg: "Failed to fetch category by name",
+        error: err,
+      });
+    });
+}

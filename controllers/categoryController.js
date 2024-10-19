@@ -25,3 +25,37 @@ export function postCategory(req, res) {
       })
     );
 }
+
+export function getCategory(req, res) {
+  Category.find().then(
+    (result)=>{
+      res.json({
+        category: result,
+      });
+    }
+  ).catch(
+    (err)=>{
+      res.json({
+        msg: "Failed to fetch categories",
+        error: err,
+      });
+    }
+  )
+}
+
+export function getCategoryByName(req, res) {
+  const name = req.params.name;
+  Category.findOne({ name: name })
+    .then((result) => {
+      res.json({
+        category: result,
+      });
+    })
+    .catch((err) => {
+      res.json({
+        msg: "Failed to fetch category by name",
+        error: err,
+      });
+    });
+}
+

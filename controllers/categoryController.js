@@ -78,3 +78,21 @@ export function deleteCategoryByName(req, res) {
       });
   }
 }
+
+export function updateCategoryByName(req, res) {
+  if(isAdmin(req,res)){
+    const name = req.params.name;
+    Category.findOneAndUpdate({ name: name }, req.body, {new: true})
+     .then((result) => {
+        res.json({
+          result: result
+        });
+      })
+     .catch((err) => {
+        res.status(500).json({
+          msg: "Failed to update category",
+          error: err,
+        });
+      });
+  }
+}

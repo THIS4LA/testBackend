@@ -7,7 +7,7 @@ const roomSchema = mongoose.Schema({
         unique: true
     },
     category:{
-        type:String.apply,
+        type:String,
         required: true
     },
     maxGuests:{

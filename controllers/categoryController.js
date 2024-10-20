@@ -1,17 +1,5 @@
 import Category from "../models/category.js";
-
-function isAdmin(req, res) {
-  if (!req.user) {
-    res.status(401).json({ msg: "Please login" });
-    return false;
-  }
-
-  if (req.user.type !== "admin") {
-    res.status(403).json({ msg: "Only admin can use this function" });
-    return false;
-  }
-  return true;
-}
+import { isAdmin } from "../utils/userValidations.js";
 
 export function postCategory(req, res) {
   if (isAdmin(req, res)) {

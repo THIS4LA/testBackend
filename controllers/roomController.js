@@ -24,7 +24,7 @@ export function postRoom(req, res) {
 export function deleteRoomById(req, res) {
   if (isAdmin(req, res)) {
     const roomId = req.params.id;
-    Room.deleteOne({ roomId: roomId })
+    Room.findOneAndDelete({ roomId: roomId })
       .then((result) =>
         res.json({
           msg: "Room deleted successfully",
@@ -43,5 +43,14 @@ export function getAllRooms(req, res) {
     .then((result) => res.json(result))
     .catch((err) =>
       res.status(500).json({ msg: "Failed to get rooms", error: err })
+    );
+}
+
+export function getRoomById(req, res) {
+  const roomId = req.params.id;
+  Room.findOne({roomId:roomId})
+    .then((result) => res.json(result))
+    .catch((err) =>
+      res.status(500).json({ msg: "Failed to get room", error: err })
     );
 }

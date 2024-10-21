@@ -48,9 +48,27 @@ export function getAllRooms(req, res) {
 
 export function getRoomById(req, res) {
   const roomId = req.params.id;
-  Room.findOne({roomId:roomId})
+  Room.findOne({ roomId: roomId })
     .then((result) => res.json(result))
     .catch((err) =>
       res.status(500).json({ msg: "Failed to get room", error: err })
     );
+}
+
+export function updateRoomById(req, res) {
+  if (isAdmin(req, res)) {
+    const roomId = req.params.id;
+    Room.findOneAndUpdate({ roomId: roomId }, req.body, { new: true })
+      .then((result) =>
+        res.json({
+          result: result,
+        })
+      )
+      .catch((err) =>
+        res.status(500).json({
+          msg: "Failed to update room",
+          error: err,
+        })
+      );
+  }
 }

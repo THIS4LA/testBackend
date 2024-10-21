@@ -25,10 +25,6 @@ const roomSchema = mongoose.Schema({
             type: String
         }
     ],
-    price:{
-        type: mongoose.Types.Decimal128,
-        required: true
-    },
     specialDescription:{
         type:String,
         default:""

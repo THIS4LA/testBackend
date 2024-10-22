@@ -40,6 +40,11 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     required: true,
     default: false
+  },
+  timeStamp:{
+    type: Date,
+    required: true,
+    default: Date.now()
   }
 });
 

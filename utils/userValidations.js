@@ -16,4 +16,5 @@ export function isLogged(req, res) {
     res.status(401).json({ msg: "Please login" });
     return false;
   }
+  return true;
 }

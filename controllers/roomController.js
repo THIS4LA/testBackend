@@ -72,3 +72,19 @@ export function updateRoomById(req, res) {
       );
   }
 }
+
+export function getRoomsByCategory(req, res) {
+  const category = req.params.category;
+  Room.find({ category: category })
+    .then((result) =>
+      res.json({
+        result: result,
+      })
+    )
+    .catch((err) =>
+      res.status(500).json({
+        msg: "Failed to get rooms by category",
+        error: err,
+      })
+    );
+}

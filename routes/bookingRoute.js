@@ -6,11 +6,14 @@ import {
   getBookingById,
   getBookingByRoomId,
   updateBookingById,
+  postBookingAdmin,
 } from "../controllers/bookingController.js";
 
 const bookingRouter = express.Router();
 
 bookingRouter.post("/", postBooking);
+
+bookingRouter.post("/Admin", postBookingAdmin);
 
 bookingRouter.get("/", getAllBookings);
 

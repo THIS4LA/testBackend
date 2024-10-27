@@ -17,8 +17,6 @@ export function postGalleryItem(req, res) {
     return;
   }
 
-  console.log(req.body);
-
   const bodyGalleryItem = req.body;
   const newGalleryItem = new galleryItem(bodyGalleryItem);
   newGalleryItem

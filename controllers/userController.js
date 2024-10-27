@@ -20,7 +20,6 @@ export async function postUsers(req, res) {
   //password hashing
   const hashPassword = await argon2.hash(req.body.password);
   user.password = hashPassword;
-  console.log(user.password);
 
   const newUser = new User(user);
   newUser
